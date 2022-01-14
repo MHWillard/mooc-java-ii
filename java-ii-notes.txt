@@ -2,7 +2,19 @@ UNIVERSITY OF HELSINKI
 JAVA PROGRAMMING II NOTES
 
 ### PART 8
+HASH MAP
+A data structure that stores a list of key-value pairs. (Compare: dictionaries in Python.)
+* It exists in Java as HashMap<>(): import with java.util.HashMap
+* You can set the data type of keys and values seperately:
+HashMap<String, Integer> hash = new HashMap<>();
+* Only one key/value pair at a time: a reassignment wipes the old value
 
+ADD: hash.put("five", 3);
+GET: hash.get("five"); retrieves the VALUE of "five" which is 3
+
+WHEN TO USE:
+* it's best to use hash maps when you know exactly what you're looking for: if you have to search based on a partial key, then it'll probably take longer and up that Big O rating
+* lists are still good to sort and keep order of items
 
 ### PART 9
 
