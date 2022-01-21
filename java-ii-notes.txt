@@ -13,8 +13,35 @@ ADD: hash.put("five", 3);
 GET: hash.get("five"); retrieves the VALUE of "five" which is 3
 
 WHEN TO USE:
-* it's best to use hash maps when you know exactly what you're looking for: if you have to search based on a partial key, then it'll probably take longer and up that Big O rating
+* it's best to use hash maps when you know exactly what you're looking for: if you have to search based on a partial key, then it'll probably take longer and up that Big O rating since it's got to iterate
 * lists are still good to sort and keep order of items
+
+REFERENCE VARIABLES:
+Anything put into a hashmap is automatically converted into a reference variable. Remember that this REFERENCES a spot in memory, it's not the actual piece of memory. Primitive is the actual spot.
+int = Integer (reference)
+* You CAN convert between types but it can get a little risky.
+* Make sure to use getOrDefault to handle potential null cases.
+
+SIMILARITY OF OBJECTS
+-The 'equals' method compares the references of two objects and returns true if it's the same. Only that - even if the objects have the same values. (The String class has a version of this for identical strings.)
+--As a result, we often need to build our own equals methods in objects if we want to compare them.
+	=> You can compare this == object, or see if object instanceof [Object]
+--Classes like ArrayList and HashMap have their own versions of these methods. Stuff added to them must be reference type as a result.
+
+* In comparison, the 'hashCode' method in HashMap compares the hash value of two objects to see if they're the same. (Remember that hash functions are used to assign objects to the hash table, and this allows quick lookup and comparison by running values through that hash function.) Strings and Integers have hashCodes, but other objects don't.
+=> To get around this, you can setup a hashCode() method in an object to grab the exact hash location of an object in a hash table and thus make approximate comparisons.
+
+SO: to use a class as a HashMap's key, define for it:
+1. the equals method, so that all equal or approximately equal objects cause the comparison to return true and all false for all the rest
+2. the hashCode method, so that as few objects as possible end up with the same hash value
+
+GROUPING DATA USING HASHMAPS
+You can attach ANY variable to a key or a value, even other lists! (Once more we inevitably approach the hash table.) You still have to declare a new ArrayList<>() when adding this way.
+
+HashMap<String, ArrayList<String>> bookFavs = new HashMap<>();
+bookFavs.put("Clarence", new ArrayList<>());
+bookFavs.add("Clarence","Atlas Shrugged");
+bookFavs.add("Clarence","The Jungle");
 
 ### PART 9
 
