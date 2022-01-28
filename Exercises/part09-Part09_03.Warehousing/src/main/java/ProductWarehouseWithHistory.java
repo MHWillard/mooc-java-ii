@@ -9,14 +9,42 @@
  * @author mwillard
  */
 public class ProductWarehouseWithHistory extends ProductWarehouse {
-    //private double balance;
+    private double balance;
     private ChangeHistory changeHistory;
 
     public ProductWarehouseWithHistory(String productName, double capacity, double initialBalance) {
-        super(productName, capacity, balance);
-        balance += initialBalance;
+        super(productName, capacity);
+        balance = initialBalance;
         changeHistory = new ChangeHistory();
+        super.addToWarehouse(initialBalance);
         changeHistory.add(initialBalance);
+    }
+    
+    public void addToWarehouse(double amount) {
+        if (amount < 0) {
+            return;
+        }
+        if (amount <= howMuchSpaceLeft()) {
+            this.balance = this.balance + amount;
+        } else {
+            this.balance = getCapacity();
+        }
+        changeHistory.add(balance);
+    }
+
+    public double takeFromWarehouse(double amount) {
+        if (amount < 0) {
+            return 0.0;
+        }
+        if (amount > this.balance) {
+            double allThatWeCan = this.balance;
+            this.balance = 0.0;
+            return allThatWeCan;
+        }
+
+        this.balance = this.balance - amount;
+        changeHistory.add(balance);
+        return amount;
     }
     
     public String history() {
