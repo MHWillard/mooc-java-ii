@@ -21,7 +21,7 @@ Anything put into a hashmap is automatically converted into a reference variable
 int = Integer (reference)
 * You CAN convert between types but it can get a little risky.
 * Make sure to use getOrDefault to handle potential null cases.
-
+	
 SIMILARITY OF OBJECTS
 -The 'equals' method compares the references of two objects and returns true if it's the same. Only that - even if the objects have the same values. (The String class has a version of this for identical strings.)
 --As a result, we often need to build our own equals methods in objects if we want to compare them.
@@ -44,6 +44,56 @@ bookFavs.add("Clarence","Atlas Shrugged");
 bookFavs.add("Clarence","The Jungle");
 
 ### PART 9
+=CLASS INHERITANCE
+In object oriented programming, solutions rise from the interactions between objects that are created from classes.
+=> Every object in Java is derived from the Object class, and in turn, have various subclasses. Take ArrayList:
+java.lang.Object
+	java.util.AbstractCollection<E>
+		java.util.AbstractList<E>
+			java.util.ArrayList<E>
+			
+This is *inheritance*, when subclasses inherit properties and behaviors from superclasses (such as equals and HashCode, that's why we had to override with our own).
+=> When a subclass inherits from a superclass, this is called "extending".
+
+Inheritance isn't ideal in every situation, but if a class has major overlap with another, along with its own properties, it might be ideal to extend it. The classic example:
+public class Animal {
+	public Animal(int legs) {
+		//constructor
+	}
+	//common animal things
+}
+
+public class Dog extends Animal {
+	private boolean fur;
+
+	public Dog (int legs, boolean fur) {
+		super(legs);
+		this.fur = fur;
+	}
+
+	public void bark() {
+		//print bark
+	}
+}
+
+Dog can do all the things and has all the properties an Animal does, but it has its own unique properties and methods as well on top of that.
+=This is also when access modifiers come into play. Public means anyone can see it, and private means no one can see it (not without a getter or setter). By using 'protected', you can expose these only to subclasses that extend the main class, but it's otherwise private.
+
+The *SUPER* constructor calls on the constructor of the superclass (in this case, Animal). As a result it brings over the Animal's starting properties. You can also prefix superclass methods with super to call them. [IE: super.getName()]
+
+=> Let's make a brief note about POLYMORPHISM:
+For extended classes, executed methods is chosen based on the actual type of the object. This is because objects are *polymorphic* - they can be used by a variety of variable types.
+-So basically: if you have a Student object that extends Person, and call toString on Student, it first looks in Student, and if that doesn't exist, it looks up at the next superclass in a hierarchy.
+
+? WHEN TO USE INHERITANCE?
+* It's best to use inheritance when the subclass needs to use all of the inherited functionality of the super class. AKA, a SPECIAL case of the super class.
+* It's best to keep the inheritance hierarchy shallow, like two or three levels.
+* If an object owns or is composed of other objects, don't use inheritance.
+* Keep the Single Responsbility Principle in mind - a class should really have only one reason to change. Multiple responsibilities are best split into multiple classes. Otherwise, you might have to change way more stuff when making edits.
+
+=INTERFACES
+
+=OBJECT POLYMORPHISM
 
 ### PART 10
 
