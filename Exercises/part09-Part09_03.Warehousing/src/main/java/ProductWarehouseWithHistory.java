@@ -21,17 +21,32 @@ public class ProductWarehouseWithHistory extends ProductWarehouse {
     }
     
     public void addToWarehouse(double amount) {
+        super.addToWarehouse(amount);
+        changeHistory.add(balance);
+    }
+    
+    public double takeFromWarehouse(double amount) {
+        double answer = super.takeFromWarehouse(amount);
+        changeHistory.add(balance);
+        return answer;
+    }
+    
+    /*
+    public void addToWarehouse(double amount) {
         if (amount < 0) {
             return;
         }
         if (amount <= howMuchSpaceLeft()) {
             this.balance = this.balance + amount;
         } else {
-            this.balance = getCapacity();
+            //this.balance = getCapacity();
+            this.balance = this.capacity;
         }
         changeHistory.add(balance);
     }
+    */
 
+    /*
     public double takeFromWarehouse(double amount) {
         if (amount < 0) {
             return 0.0;
@@ -46,6 +61,7 @@ public class ProductWarehouseWithHistory extends ProductWarehouse {
         changeHistory.add(balance);
         return amount;
     }
+    */
     
     public String history() {
         return changeHistory.toString();
