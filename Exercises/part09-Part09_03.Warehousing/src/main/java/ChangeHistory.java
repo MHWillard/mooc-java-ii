@@ -43,7 +43,7 @@ public class ChangeHistory {
         if (history.isEmpty()) {
             return 0;
         }
-        double min = 0;
+        double min = maxValue();
         
         for (double i: history) {
             if (i <= min) {
@@ -57,7 +57,7 @@ public class ChangeHistory {
         if (history.isEmpty()) {
             return 0;
         }
-        double total = 0;
+       double total = 0;
         
         for (double i: history) {
             total += i;

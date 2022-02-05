@@ -20,48 +20,29 @@ public class ProductWarehouseWithHistory extends ProductWarehouse {
         changeHistory.add(initialBalance);
     }
     
+    @Override
     public void addToWarehouse(double amount) {
         super.addToWarehouse(amount);
-        changeHistory.add(balance);
+        double change = super.getBalance();
+        changeHistory.add(change);
     }
     
+    @Override
     public double takeFromWarehouse(double amount) {
         double answer = super.takeFromWarehouse(amount);
-        changeHistory.add(balance);
+        double change = super.getBalance();
+        changeHistory.add(change);
         return answer;
     }
     
-    /*
-    public void addToWarehouse(double amount) {
-        if (amount < 0) {
-            return;
-        }
-        if (amount <= howMuchSpaceLeft()) {
-            this.balance = this.balance + amount;
-        } else {
-            //this.balance = getCapacity();
-            this.balance = this.capacity;
-        }
-        changeHistory.add(balance);
+    public void printAnalysis() {
+        System.out.println("Product: " + super.getName());
+        System.out.println("History: " + history());
+        System.out.println("Largest amount of product: " + changeHistory.maxValue());
+        System.out.println("Smallest amount of product: " + changeHistory.minValue());
+        System.out.println("Average: " + changeHistory.average());
+        
     }
-    */
-
-    /*
-    public double takeFromWarehouse(double amount) {
-        if (amount < 0) {
-            return 0.0;
-        }
-        if (amount > this.balance) {
-            double allThatWeCan = this.balance;
-            this.balance = 0.0;
-            return allThatWeCan;
-        }
-
-        this.balance = this.balance - amount;
-        changeHistory.add(balance);
-        return amount;
-    }
-    */
     
     public String history() {
         return changeHistory.toString();

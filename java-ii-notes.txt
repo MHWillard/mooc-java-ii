@@ -44,7 +44,7 @@ bookFavs.add("Clarence","Atlas Shrugged");
 bookFavs.add("Clarence","The Jungle");
 
 ### PART 9
-=CLASS INHERITANCE
+==CLASS INHERITANCE==
 In object oriented programming, solutions rise from the interactions between objects that are created from classes.
 => Every object in Java is derived from the Object class, and in turn, have various subclasses. Take ArrayList:
 java.lang.Object
@@ -91,7 +91,49 @@ For extended classes, executed methods is chosen based on the actual type of the
 * If an object owns or is composed of other objects, don't use inheritance.
 * Keep the Single Responsbility Principle in mind - a class should really have only one reason to change. Multiple responsibilities are best split into multiple classes. Otherwise, you might have to change way more stuff when making edits.
 
-=INTERFACES
+*ABTRACT CLASSES*
+Abstract classes are like templates. They only allow subclasses to be extended from it - you can't mkake an instance of the template itself. It's good for when you need a basic template that people can build off safely in an OOP way.
+-> Think of it like an interface, in a way. But these interfaces have object variables and constructors.
+
+A good example:
+You're building Lego ships. Your abstract class is the core ship itself. People then take this template, make a copy, and extend with their own unique things. My ship has like a missile bank, but her ship is more of a bomber. Yet they have the standard template core of a ship underneath. Saves time, easy reuse, offers structure.
+
+public abstract class Spaceship {}
+
+public class Starfighter extends Spaceship {}
+
+The abstract keyword can be added to classes and methods. Abstract subclasses must implement abstract superclass methods.
+
+
+==INTERFACES==
+=> Define with 'public interface' for the class
+=> then to implement: public class Book implements Readable
+An interface defines behavior, but the classes defines how they're implemented.
+An interface is a *contract of behavior.* Basically, it's saying classes will implement what's defined in the interface, such as methods and required values. As such, a class that uses an interface MUST implement what the interface defines.
+
+TYPES: So an object is reference type, and implementing an interface adds another: an eBook object that implements Readable is both Ebook and Readable types.
+METHOD PARAMETERS: You can also use an interface as a method parameter when calling a method.
+
+EXAMPLE:
+private ArrayList<Packable> packables;
+
+public void add(Packable packable) {
+    packables.add(packable);
+}
+This means that ANY object with the Packable type can be added to this ArrayList, even if they aren't the same type of object at all!
+
+RETURN: You can also return interfaces from methods. One design pattern for OOP programming is called Factory that does this, building objects and interfaces and returning them accordingly. This allows the Factory to make new class interface implementations without having to know all the guys.
+
+? WHY USE INTERFACES? ?
+Interfaces help extend polymorphism, which is when objects can be used by a variety of variable types. This allows a lot of reusability - IE, they can implement the same interface and methods but have different outcomes. This extends OOP's goal of having reusable, modular objects, and it's a way for them to do a variety of things with the same initial guts, which means you only need to change one thing if time comes for them to change.
+-They also reduce dependencies between classes. This way, if you're making changes or adding new classes, you can just add stuff that works and it won't mess with the interface. It's about REDUCING TOTAL WORK.
+
+=> COMMON INTERFACES
+LIST: Basic functionality for ArrayList, LinkedList, but then these two things implement the interface in different ways. They both have their strengths and weaknesses but their core is the List interface.
+MAP: Interface for HashMap and other hash tables; returns values with the Collection interface
+SET: Interface for HashSet
+COLLECTION: Common collection functionality, List and Set implements this interface for checking item existence and size
+
 
 =OBJECT POLYMORPHISM
 
