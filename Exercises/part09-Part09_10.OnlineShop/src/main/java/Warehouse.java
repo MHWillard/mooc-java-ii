@@ -8,8 +8,7 @@
  *
  * @author mwillard
  */
-import java.util.Map;
-import java.util.HashMap;
+import java.util.*;
 
 public class Warehouse {
     public Map<String, Integer> products;
@@ -47,5 +46,9 @@ public class Warehouse {
             return true;
         }
         return false;
+    }
+    
+    public Set<String> products() {
+        return products.keySet();
     }
 }
