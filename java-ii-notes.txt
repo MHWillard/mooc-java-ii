@@ -135,7 +135,32 @@ SET: Interface for HashSet
 COLLECTION: Common collection functionality, List and Set implements this interface for checking item existence and size
 
 
-=OBJECT POLYMORPHISM
+==OBJECT POLYMORPHISM==
+Objects that use interfaces also inherit the interface's type along with classes it implements.
+-A String object also has the Object type, since it inherits the Object class.
+-Thus, you can pass in these preceding types into parameters if you just need their methods. You can also declare methods to take any objects that uses specific interfaces.
+
+public class Printer {
+
+    public void printManyTimes(Object object, int times) {
+        int i = 0;
+        while (i < times) {
+            System.out.println(object);
+            i = i + 1;
+        }
+    }
+
+    public void printCharacters(CharSequence charSequence) {
+        int i = 0;
+        while (i < charSequence.length()) {
+            System.out.println(charSequence.charAt(i));
+            i = i + 1;
+        }
+    }
+}
+
+-Again, this is because they are POLYMORPHIC. They are made of different types and can have objects be used by these varying types which extends reusability for objects.
+
 
 ### PART 10
 

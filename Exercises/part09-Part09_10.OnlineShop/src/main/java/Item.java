@@ -11,9 +11,9 @@
 import java.util.*;
 
 public class Item {
-    public String name;
-    public int qty;
-    public int price;
+    private String name;
+    private int qty;
+    private int price;
     
     public Item(String product, int qty, int unitPrice) {
         this.name = product;

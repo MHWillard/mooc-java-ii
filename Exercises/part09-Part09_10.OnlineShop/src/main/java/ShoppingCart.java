@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class ShoppingCart {
-    public Map<String, Item> items;
+    private Map<String, Item> items;
     
     public ShoppingCart() {
         items = new HashMap<>();
@@ -22,9 +22,12 @@ public class ShoppingCart {
         //make item
         //if in List: run increaseQuantity
         //otherwise: add it
-        
-        Item item = new Item(product, 1, price);
-        items.add(item);
+        if (items.keySet().contains(product)) {
+            items.get(product).increaseQuantity();
+        } else {
+            Item item = new Item(product, 1, price);
+            items.put(product, item);
+        }
     }
     
     public int price() {
@@ -39,7 +42,7 @@ public class ShoppingCart {
     }
     
     public void print() {
-        for (Item i : items) {
+        for (Item i : items.values()) {
             System.out.println(i);
         }
     }

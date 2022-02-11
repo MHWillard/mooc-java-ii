@@ -11,8 +11,8 @@
 import java.util.*;
 
 public class Warehouse {
-    public Map<String, Integer> products;
-    public Map<String, Integer> supply;
+    private Map<String, Integer> products;
+    private Map<String, Integer> supply;
     
     public Warehouse() {
         products = new HashMap<>();
