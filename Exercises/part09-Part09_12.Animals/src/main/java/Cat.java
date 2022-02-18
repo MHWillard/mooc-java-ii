@@ -8,7 +8,7 @@
  *
  * @author mwillard
  */
-public class Cat extends Animal {
+public class Cat extends Animal implements NoiseCapable {
     public Cat() {
         super("Cat");
     }
@@ -17,19 +17,14 @@ public class Cat extends Animal {
         super(name);
     }
     
-    public void eat() {
-        //String name = super.getName();
-        super.eat();
-    }
-    
-    public void sleep() {
-        //System.out.println(name + "eats");
-        super.sleep();
-    }
-    
     public void purr() {
         String name = super.getName();
         System.out.println(name + " purrs");
+    }
+    
+    @Override
+    public void makeNoise() {
+        this.purr();
     }
     
 }

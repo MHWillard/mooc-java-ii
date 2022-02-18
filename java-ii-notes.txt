@@ -81,6 +81,8 @@ Dog can do all the things and has all the properties an Animal does, but it has 
 
 The *SUPER* constructor calls on the constructor of the superclass (in this case, Animal). As a result it brings over the Animal's starting properties. You can also prefix superclass methods with super to call them. [IE: super.getName()]
 
+This also allows you to use interface methods without defining them in the subclass. if Animal has makeNoise(), then Dog can do it too. You actually DON'T rewrite the method. If you need to OVERRIDE, THEN you define a new method.
+
 => Let's make a brief note about POLYMORPHISM:
 For extended classes, executed methods is chosen based on the actual type of the object. This is because objects are *polymorphic* - they can be used by a variety of variable types.
 -So basically: if you have a Student object that extends Person, and call toString on Student, it first looks in Student, and if that doesn't exist, it looks up at the next superclass in a hierarchy.
@@ -122,7 +124,7 @@ public void add(Packable packable) {
 }
 This means that ANY object with the Packable type can be added to this ArrayList, even if they aren't the same type of object at all!
 
-RETURN: You can also return interfaces from methods. One design pattern for OOP programming is called Factory that does this, building objects and interfaces and returning them accordingly. This allows the Factory to make new class interface implementations without having to know all the guys.
+RETURN: You can also return interfaces from methods. One design pattern for OOP programming is called Factory that does this, building objects and interfaces and returning them accordingly. This allows the Factory to make new class interface implementations without having to know all the guts.
 
 ? WHY USE INTERFACES? ?
 Interfaces help extend polymorphism, which is when objects can be used by a variety of variable types. This allows a lot of reusability - IE, they can implement the same interface and methods but have different outcomes. This extends OOP's goal of having reusable, modular objects, and it's a way for them to do a variety of things with the same initial guts, which means you only need to change one thing if time comes for them to change.
@@ -163,6 +165,62 @@ public class Printer {
 
 
 ### PART 10
+==HANDLING COLLECTIONS AS STREAMS==
+In streams, you define a sequence of events that happen on each value in a collection. (Collections are lists, sets, maps, etc.)
+* Remember MapReduce? Mapping a function to each value in a collection is basically working with them as a stream.
+
+-> Use the stream() method, then attach other methods to it.
+double average = inputs.stream()
+    .mapToInt(s -> Integer.valueOf(s)) //convert each value in stream to int
+    .average() //get the average of all the items in the stream
+    .getAsDouble(); //return sum as double
+	
+LAMBDA EXPRESSIONS:
+These are shorthand for functions that are anonymous, not really attached to a class or interface
+EX: .filter(i -> i > 0) //this is equivalent to
+filter(Integer i -> {
+	if (i > 0) {
+		return true;
+	}
+	return false;
+})
+
+You can also pass in class functions:
+.filter(value -> Screeners:greaterThanFive(value))
+or even as a parameter
+.filter(Screeners::greaterThanFive)
+
+STREAM METHODS
+are either intermediate or terminal. It makes essentially a sublist and performs operations on it.
+intermediate: they return a stream you can further work with (.map(), .filter())
+terminal: they return a definite end value to process (.average(), .collect())
+
+REDUCE
+Here's a reduce function:
+int sum = values.stream()
+    .reduce(0, (previousSum, value) -> previousSum + value);
+System.out.println(sum);
+
+The syntax is reduce(*initialState*, (*previous*, *object*) -> *actions on the object*). So for above, it initially starts as 0. It takes the previous sum, also takes thed current value, then adds them together. Then this repeats with that sum becoming the new previous sum.
+
+-> You can also do this on objects, paring them down and working with them as sub lists.
+
+READING FILES
+Use streams to create an input stream and process a row of lines one by one. Then you can use the Paths class to get a file path to read with the Files class.
+
+Files.lines(Paths.get(file))
+            .map(row -> row.split(","))
+            .map(parts -> new Book(parts[0], Integer.valueOf(parts[1]), Integer.valueOf(parts[2]),parts[3]))
+            .forEach(book -> books.add(book)); 
+
+
+==COMPARABLE INTERFACE==
+This interface defines compareTo: if a class implements it, it can be sorted with Java sorting algos.
+-These methods return either positive, negative, or 0 in terms of sorting to create natural ordering.
+-You can also use the sorted method for this, but remember, a stream will only sort the items in its sublist.
+
+==VARIOUS TECHNIQUES==
+regex, iterator, enumerated types
 
 ### PART 11
 

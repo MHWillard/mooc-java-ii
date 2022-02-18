@@ -8,7 +8,7 @@
  *
  * @author mwillard
  */
-public class Animal {
+abstract public class Animal {
     private String name;
     
     public Animal(String name) {
