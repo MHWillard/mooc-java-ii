@@ -129,6 +129,9 @@ RETURN: You can also return interfaces from methods. One design pattern for OOP 
 ? WHY USE INTERFACES? ?
 Interfaces help extend polymorphism, which is when objects can be used by a variety of variable types. This allows a lot of reusability - IE, they can implement the same interface and methods but have different outcomes. This extends OOP's goal of having reusable, modular objects, and it's a way for them to do a variety of things with the same initial guts, which means you only need to change one thing if time comes for them to change.
 -They also reduce dependencies between classes. This way, if you're making changes or adding new classes, you can just add stuff that works and it won't mess with the interface. It's about REDUCING TOTAL WORK.
+-> A class can also implement multiple interfaces as long as you implement each interface's required methods:
+
+class Example implements FirstInterface, SecondInterface {}
 
 => COMMON INTERFACES
 LIST: Basic functionality for ArrayList, LinkedList, but then these two things implement the interface in different ways. They both have their strengths and weaknesses but their core is the List interface.
@@ -218,8 +221,32 @@ Files.lines(Paths.get(file))
 This interface defines compareTo: if a class implements it, it can be sorted with Java sorting algos.
 -These methods return either positive, negative, or 0 in terms of sorting to create natural ordering.
 -You can also use the sorted method for this, but remember, a stream will only sort the items in its sublist.
+-> We can also use a lambda expression for sorting as well.
+
+* The COMPARATOR class in Java also allows types of sorting: comparing and thenComparing based on when a value is passed, first or next. You can use this in the form of a stream as well, and you can call methods within comparing/thenComparing and compare their values accordingly.
+Comparator<Book> compare = Comparator.comparing(Book::method1).thenComparing(Book::method2);
 
 ==VARIOUS TECHNIQUES==
+### STRINGBUILDER
+So normally, when adding to strings, the usual method for Java is to create a new string, add to it with another created string, and then as it continues, it keeps copying the previous strings. The StringBuilder method solves this problem by making an object, appending content to it, then returning the string with a toString method. This helps improve performance.
+
+StringBuilder numbers = new StringBuilder();
+for (int i = 0; i < 5; i++) {
+	numbers.append(i)
+}
+System.out.println(numbers.toString());
+
+### REGULAR EXPRESSIONS
+These let you compare strings against an expression which is basically another set of strings in a compact form. By using certain characters, you can check for strings or parts of strings in different areas of the string for comparison. Examples include:
+-Alternation: 00|100|00 = vertical line
+-Affecting part of a string: car(|s|) = parentheses around the section
+-Quantifiers: 2{2,4} = brackert, check if a repeats b times
+-Range of characters: [a-c] = brackets
+
+### ENUMERATED TYPES (ENUM)
+
+### ITERATOR
+
 regex, iterator, enumerated types
 
 ### PART 11
