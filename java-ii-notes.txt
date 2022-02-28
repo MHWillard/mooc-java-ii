@@ -243,9 +243,20 @@ These let you compare strings against an expression which is basically another s
 -Quantifiers: 2{2,4} = brackert, check if a repeats b times
 -Range of characters: [a-c] = brackets
 
+Think of it like this: you're comparing one string to another, but your regex comparision string has these wildcards. 
+
 ### ENUMERATED TYPES (ENUM)
+A certain data type where you can declare its possible values ahead of time, acting as its own type in addition to its normal stuff.
+	public enum Suit {
+		DIAMOND, SPADE, HEART, CLUB
+	}
+Access them like normal properties: Suit.DIAMOND for example
+-you can compare them with ordinal(), and the value's position indicates its number.
+^ Above, Suit.DIAMOND = 0, Suit.SPADE = 1, etc.
+-you can also set object references with private constructors.
 
 ### ITERATOR
+Any object that has the Collection interface also gets access to the Iterable interface. Essentially this interface lets you walk through a list, pointing at items one by one. It can check if there's still items in the list [hasNext()], what the next item's value is [next()], remove the previously next called item [remove()], etc.
 
 regex, iterator, enumerated types
 

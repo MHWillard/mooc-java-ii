@@ -5,11 +5,6 @@ public class Checker {
     public Checker() {}
     
     public boolean isDayOfWeek(String string) {
-        //take string
-        //compare against regex
-        //if good: return true
-        //else: return false
-        //sun, mon, tue, wed, thu, fri, sat
         
         String regex = "sun|mon|tue|wed|thu|fri|sat"; //put regex here
         
@@ -19,16 +14,19 @@ public class Checker {
         return false;
     }
     
-        public boolean allVowels(String string) {
-        //take string
-        //compare against regex
-        //if good: return true
-        //else: return false
-        //a,e,i,o,u
+    public boolean allVowels(String string) {
         
-        //String regex = "[aeiou]"; //put regex here
+        if (string.matches("^[aeiou]*")) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean timeOfDay(String string) {
         
-        if (string.matches("{aeiou}+")) {
+        String regex = "\"(?:[01]\\\\d|2[0123]):(?:[012345]\\\\d):(?:[012345]\\\\d)\""; //put regex here
+        
+        if (string.matches(regex)) {
             return true;
         }
         return false;
