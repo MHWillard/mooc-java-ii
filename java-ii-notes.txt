@@ -226,6 +226,15 @@ This interface defines compareTo: if a class implements it, it can be sorted wit
 * The COMPARATOR class in Java also allows types of sorting: comparing and thenComparing based on when a value is passed, first or next. You can use this in the form of a stream as well, and you can call methods within comparing/thenComparing and compare their values accordingly.
 Comparator<Book> compare = Comparator.comparing(Book::method1).thenComparing(Book::method2);
 
+=> You can use Comparator to make a sorting class that uses the Comparator interface.
+```
+public class SortBySuit implements Comparator<Card> {
+    public int compare(Card c1, Card c2) {
+        return c1.getSuit().ordinal() - c2.getSuit().ordinal();
+    }
+}
+```
+
 ==VARIOUS TECHNIQUES==
 ### STRINGBUILDER
 So normally, when adding to strings, the usual method for Java is to create a new string, add to it with another created string, and then as it continues, it keeps copying the previous strings. The StringBuilder method solves this problem by making an object, appending content to it, then returning the string with a toString method. This helps improve performance.
@@ -258,9 +267,44 @@ Access them like normal properties: Suit.DIAMOND for example
 ### ITERATOR
 Any object that has the Collection interface also gets access to the Iterable interface. Essentially this interface lets you walk through a list, pointing at items one by one. It can check if there's still items in the list [hasNext()], what the next item's value is [next()], remove the previously next called item [remove()], etc.
 
-regex, iterator, enumerated types
 
 ### PART 11
+==CLASS DIAGRAMS==
+Class diagrams are used to model classes at a higher level, understanding relationships and connections between them. Often these are done in UML (Unified Modeling Language) to have a standard, but ultimately they're a tool - do what works best when diagramming to help with software architecture.
+
+A class has a rectangle with the names of properties and methods. Each one either has a - in front (for a private method) and + for a public one. Constructors go next, methods go last.
+
+public class Person {
+	private String name;
+	public int age;
+	
+	public Person(String initial name) {
+		this.name = name;
+		this.age = 0;
+	}
+	
+	public void print() { /*code*/ }
+}
+
+|Person
+-name: String name
++age: int
+---
++Person(initialName: String)
++print(): void
+
+Connections with other classes (for example, an ArrayList<Person> that refers to a Person class) are represented as an arrow pointing to the intended direction of data. (No arrow means both classes know about each other.) Use a star to represent multiples.
+=> you might notice this is kind of like 1-1 or 1-many relationships in relational databases. What if...Tables were objects too?
+
+* If a subclass inherits from a superclass, use an arrow with the arrowhead being a pronounced triangle.
+* Abstract classes have <<abstract>> written in the title.
+* Interfaces get <<interface>>. Use a dashed line for an interface.
+
+==PACKAGES==
+
+==EXCEPTIONS==
+
+==PROCESSING FILES==
 
 ### PART 12
 
