@@ -1,0 +1,7 @@
+FlightControl\domain\FlightID.class
+FlightControl\ui\UI.class
+FlightControl\domain\Airport.class
+FlightControl\domain\Flight.class
+FlightControl\domain\Plane.class
+FlightControl\Main.class
+FlightControl\logic\Controller.class

@@ -1,0 +1,38 @@
+PACKAGE STRUCTURE
+can split into things like this (compare Model/View/Controller)
+DOMAIN: all the concepts/data you need to solve a problem (Model)
+LOGIC: functionality to control application (Controller)
+UI: the user interface (View)
+
+-----
+FLIGHTCONTROL
+
+DOMAIN
+Plane
+	-id, -capacity
+	print
+
+Flight
+	-flight<plane, id>
+	print
+	
+Airport
+	-planes, -id
+	print
+
+LOGIC
+add airplane
+	give airplane ID
+	give airplane capacity
+add flight
+	goive airplane ID
+	give departure airport id
+	give target airport id
+	
+print airplanes
+print flights
+print airplane details
+
+UI
+Scanner
+While loop
