@@ -20,23 +20,12 @@ public class Controller {
         s = new Scanner(System.in);
     }
     
-    public Plane createAirplane() {
-        System.out.println("Give the airplane id: ");
-        String planeID = s.nextLine();
-        System.out.println("Give the airplane capacity: ");
-        int planeCapacity = s.nextInt();
-        Plane newPlane = new Plane(planeID, planeCapacity);
+    public Plane createAirplane(String planeID, int capacity) {
+        Plane newPlane = new Plane(planeID, capacity);
         return newPlane;
     }
     
-    public Flight createFlight(ArrayList<Plane> planes) {
-        System.out.println("Give the airplane id: ");
-        String airplaneID = s.nextLine();
-        System.out.println("Give the departure airport id: ");
-        String departID = s.nextLine();
-        System.out.println("Give the target airport id: ");
-        String targetID = s.nextLine();
-                
+    public Flight createFlight(ArrayList<Plane> planes, String airplaneID, String departID, String targetID) {              
         Plane flightPlane = planes.stream()
                 .filter(p -> airplaneID.equals(p.getID()))
                 .findAny()

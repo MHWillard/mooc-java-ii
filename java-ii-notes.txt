@@ -301,10 +301,43 @@ Connections with other classes (for example, an ArrayList<Person> that refers to
 * Interfaces get <<interface>>. Use a dashed line for an interface.
 
 ==PACKAGES==
+So packages are just groups of Java classes or libraries that have a common functionality or purpose. (In JS, remember, NPM alows package management.) The common Program class is part of the library package.
+-Packages can have sub-packages.
+-import statements bring in classes. For example, import java.util.ArrayList means access ArrayList, inside of the util package, which is inside of the java package.
+
+These packages are typically kept in src/main/java and show up as folders within them. This is where the source code for a program is contained.
+
+ACCESS MODIFIERS
+Private and public work as normal, but without an access modifier, the default access is everything else within that same package only.
 
 ==EXCEPTIONS==
+Exceptions get thrown when a program ends with an error. Java has a lot of these premade, but we can define our own with `try {} catch (Exception e) {}`. This lets us define things that happen when exceptions are thrown.
+
+	try {
+		//code
+	} catch (Exception e) {
+		//code that only runs in this instance
+	}
+
+Instead of handling it, a method can throw the Exception back up to who called it, and this can go up each level all the way to the JVM. 
+
+	public int function() throws Exception {
+		//code, etc.
+	}
+
+They also have the throw method:
+	throw new IllegalArgumentException("Illegal argument");
+	
+-Some exceptions don't need to be handled with try/catch.
+
+-Classes that use interfaces that throw exceptions must also implement them.
+
+The actual error is stored in the Exception e variable of a catch block. On this class, you can run printStackTrace(), then read from the bottom up, to find how the exception got throw.
 
 ==PROCESSING FILES==
+PrintWriter is a class that lets you write to a file. Its constructor is a String that's the location of the target file. It must have its error exception handled by a try/catch block or passed elsewhere.
+
+THIS WILL WIPE THE CONTENTS. To APPEND to an existing file, use FileWriter.
 
 ### PART 12
 
