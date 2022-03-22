@@ -16,12 +16,12 @@ import java.util.List;
  */
 public class AverageSensor implements Sensor {
     private ArrayList<Sensor> sensors;
-    private boolean masterSwitch;
+    //private boolean masterSwitch;
     private List<Integer> readings;
     
     public AverageSensor() {
         sensors = new ArrayList<>();
-        masterSwitch = false;
+        //masterSwitch = false;
         readings = new ArrayList<Integer>();
     }
     
@@ -30,7 +30,18 @@ public class AverageSensor implements Sensor {
     }
 
     public boolean isOn() {
-        return this.masterSwitch;
+        boolean isOn = false;
+
+        for (Sensor s : sensors) {
+            if (s.isOn() == true) {
+                isOn = true;
+            } else {
+                isOn = false;
+                break;
+            }
+
+        }
+        return isOn;
     } 
     
     public void setOn() {
@@ -38,18 +49,6 @@ public class AverageSensor implements Sensor {
             s.setOn();
         }
         
-        masterSwitch = true;
-        
-        /*
-        ArrayList<Sensor> filtered = this.sensors
-                .stream()
-                .filter(s -> s.isOn() == true)
-                .collect(Collectors.toCollection(ArrayList::new));
-        
-        if (filtered.size() == sensors.size()) {
-            this.masterSwitch = true;
-        }
-        */
         
     }      // sets the sensor on
     public void setOff() {
@@ -57,14 +56,13 @@ public class AverageSensor implements Sensor {
             s.setOff();
         }
         
-        masterSwitch = false;
     }
     
     public int read() {
         //map to each: take read method, all to total
         //then divide total by length
         
-        if (masterSwitch == false || sensors.isEmpty()) {
+        if (isOn() == false || sensors.isEmpty()) {
             throw new IllegalStateException("Sensor must be on.");
         } else {
         double tempAvg = sensors.stream()
