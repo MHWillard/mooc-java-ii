@@ -6,16 +6,45 @@
 package dictionary;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.Scanner;
+import java.nio.file.Paths;
+import java.io.PrintWriter;
 
 /**
  *
  * @author mwillard
  */
 public class SaveableDictionary {
-    HashMap<String, String> dict;
+    private HashMap<String, String> dict;
+    private String file;
     
     public SaveableDictionary() {
         dict = new HashMap<>();
+    }
+    
+    public SaveableDictionary(String file) {
+        dict = new HashMap<>();
+        this.file = file;
+        //run load using file argument then add to HashMap
+    }
+    
+    public boolean load() {
+        try (Scanner scanner = new Scanner(Paths.get(file))) {
+            
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String [] parts = line.split(":");
+                
+                add(parts[0],parts[1]);
+                //split
+                //add to dict
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
     
     public void add(String words, String translation) {
@@ -43,16 +72,25 @@ public class SaveableDictionary {
     }
     
     public void delete(String word) {
-        if (dict.containsKey(word)) {
-            dict.remove(word);
-        }
+        String translation = translate(word);
         
-        if (dict.containsValue(word)) {
-            for (String s : dict.keySet()) {
-                if (dict.get(s).equals(word)) {
-                    dict.remove(s);
-                }
-            }
-        }
+        dict.remove(word);
+        dict.remove(translation);
+        
+    }
+    
+    public boolean save() throws Exception {
+        //write file using filewriter class
+        //try catch, return false if exception; otherwise throw true
+        //overwrite, don't use append
+        
+        //take all words in dict
+        //for each word: write to existing file using PrintWriter, using it as a text string
+        //end with close
+        
+        PrintWriter writer = new PrintWriter(file);
+        writer.p
+        
+        return true;
     }
 }
