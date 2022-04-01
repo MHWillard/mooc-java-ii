@@ -79,7 +79,7 @@ public class SaveableDictionary {
         
     }
     
-    public boolean save() throws Exception {
+    public boolean save() {
         //write file using filewriter class
         //try catch, return false if exception; otherwise throw true
         //overwrite, don't use append
@@ -88,9 +88,20 @@ public class SaveableDictionary {
         //for each word: write to existing file using PrintWriter, using it as a text string
         //end with close
         
-        PrintWriter writer = new PrintWriter(file);
-        writer.p
+        //try catch block
         
+        
+        try {
+            PrintWriter writer = new PrintWriter(file);
+                for (String s : dict.keySet()) {
+                    String text = s + ":" + dict.get(s);
+                    writer.println(text);
+                }
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+            return false;
+        }
         return true;
     }
 }

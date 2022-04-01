@@ -339,7 +339,93 @@ PrintWriter is a class that lets you write to a file. Its constructor is a Strin
 
 THIS WILL WIPE THE CONTENTS. To APPEND to an existing file, use FileWriter.
 
+
 ### PART 12
+
+==TYPE PARAMETERS AND GENERICS==
+So a GENERIC is a class that can store a type as a parameter; more importantly, WHAT that type is is determined at compile time and doesn't need to be chosen ahead. This is used to build things like ArrayList<String> or hashmaps: notice that they can be ANY type, which means they were implemented as generics so you can feed whatever into it.
+
+public class Locker<T> {
+	private T element; //property of a generic type
+	
+	public void setValue(T element) {
+		this.element = element; //take a generic type and assign it to the property
+	}
+}
+
+Now, if you were to do something like:
+Locker<Integer> locker = new Locker<>();
+
+At runtime, the new object's element property gets armed so now it'll take Int parameters for its type. You can guess the huge flexibility you get with this.
+
+Generic interfaces work much in the same way. Classes that implemement generic interfaces can either declare the type in their implementation, or pass it up to the interface in the class definition.
+
+	public interface List<T> {
+		void add(T value);
+		T get(int index);
+		T remove(int index);
+	}
+	
+	public class MovieList implements List<T> {}
+
+
+==ARRAYLIST AND HASH TABLE==
+ARRAY: Set length of memory for inserting values of a data type: usually set in stone when it's made outside of certain implementations; each space in the array has an index where it talks to the pointer in memory that leads to the memory location of that data.
+-Java's ArrayList has features that work around this.
+
+Arrays are often used inside other data structures. This chapter builds its own interpretations of ArrayList and HashMap to demonstrate how arrays come into play.
+
+# LISTS
+If you were to build your own version of ArrayList, you'd need to consider add, contains, remove, and get functions. You would also need to add the ability for the array to grow in size as stuff gets added to it, otherwise you'd run into errors (because normally an array's size is set in stone and to grow it, you need to make a new array and reassign the values).
+
+- By using type parameters your build can take any type of values for constructing.
+- For adding, you track the index, add the new value to the array, then up the value for the next available free index in order, starting from 0.
+- For growing the array, you take the existing size, make a new array that has more size, then iterate, copying the old array to the new one, before assigning the new one to the class instance. (In Java this is oldSize + oldSize / 2.) [Of course, due to big O notation, this can be slow for huge arrays.]
+- To check for a value: iterate through the array and return true if the value is found.
+- Removing is more complicated, because you must iterate to find a value, remove it, then shrink the resulting array by moving the values left to fill the gap.
+
+So ArrayList does this build BUT adds other things to optimize these methods for speed.
+
+# HASH MAP
+A hash map is an array where each item is a list of key/value pairs (like mini arrays basically). When a hash map item is set, a hash code is calculated that corresponds with the index of that hash map. This way we can assign codes that aren't alike and allows for easier searching. The trick is finding a way to insert all the items so they don't bunch up against each other, to spread them out for quicker searching. This is still way faster than doing this as an array list.
+
+To replicate a Hash Map build, you'd need to consider the array methods, as well as use type parameters to create a Pair object for keys and values of whatever type is needed at runtime.
+
+- Get gets that pair's unique hash code and iterates to find it.
+- Adding finds the pair's hash code and updating the existing value or making a new one.
+- Still need to grow the array for these hashes.
+- Remove: kill the value at the index equivalent to the hash code.
+
+# SEARCH PERFORMANCE
+You can measure system time with System.nanotime()
+Remember: lists are better for sorting, hashes are better for searching. As a rule of thumb, of course, in terms of big O performance.
+
+==RANDOMNESS==
+Random() lets you roll numbers provided to it.
+Random random = new Random();
+int result = random.nextInt(11); //roll a number between 0-10
+
+nextInt = roll numbers
+nextDouble = roll doubles
+
+Of course, we can't generate TRUE random numbers, but most of the time our psuedorandom rolls are good enough, outside of very specific scientific calculations.
+
+==MULTIDIMENSIONAL DATA==
+Arrays can be multidimensional.
+Declare: int [][] tableArray = new int[2][3];
+//a table with two rows and three columns.
+
+Then:
+tableArray[0][1] = 4;
+tableArray[1][1] = 7;
+
+And so on. To access, do a for loop for each row and then another for each column.
+for (int i = 0; i <= tableArray.length; i++) {
+	for (int j = 0; j <= tableArray[row].length; j++) {
+		//print value
+	}
+}
+
 
 ### PART 13
 

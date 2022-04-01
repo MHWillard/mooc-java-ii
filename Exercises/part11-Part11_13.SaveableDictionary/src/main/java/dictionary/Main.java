@@ -13,5 +13,7 @@ if (wasSuccessful) {
 System.out.println(dictionary.translate("apina"));
 System.out.println(dictionary.translate("ohjelmointi"));
 System.out.println(dictionary.translate("alla oleva"));
+
+dictionary.save();
     }
 }
