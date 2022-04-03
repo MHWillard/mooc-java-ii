@@ -426,6 +426,8 @@ for (int i = 0; i <= tableArray.length; i++) {
 	}
 }
 
+Remember: you did this when you were doing CS50 to make the Mario blocks.
+
 
 ### PART 13
 
