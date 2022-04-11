@@ -430,6 +430,23 @@ Remember: you did this when you were doing CS50 to make the Mario blocks.
 
 
 ### PART 13
+==GRAPHICAL USER INTERFACES
+We use pre-written graphical user interface libraries to draw text, buttons, windows, and more. JavaFX is the most modern standard GUI library - in the past, people used Swing.
+
+GUIs are arranged in three parts:
+1. The Stage object, usually a window
+2. The Scene object, which is kept in the stage and is usually responsible for the object that controls component layout
+3. UI components added as children to FlowPane, the object that sets the layout for them
+
+==UI COMPONENTS AND LAYOUT
+Different components include Buttons, Labels, etc.
+Tree Table View: drop-down hierarchy of items
+
+==EVENT HANDLING
+
+==LAUNCH PARAMETERS
+
+==MULTIPLE VIEWS
 
 ### PART 14
 
