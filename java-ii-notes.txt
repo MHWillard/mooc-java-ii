@@ -438,9 +438,22 @@ GUIs are arranged in three parts:
 2. The Scene object, which is kept in the stage and is usually responsible for the object that controls component layout
 3. UI components added as children to FlowPane, the object that sets the layout for them
 
+Make groupings.
+-Then assign them to the scene: Scene(Flow)
+--then attach the scene to the stage: stage.setScene(scene)
+
 ==UI COMPONENTS AND LAYOUT
 Different components include Buttons, Labels, etc.
 Tree Table View: drop-down hierarchy of items
+
+Components are set within classes that automatically arrange them based on their type.
+-FlowPane sets them side by side and it's responsive.
+-BorderPane does it on the border.
+-HBox lays it out in a row
+-GridPane does it in a grid.
+
+-> You can combine layouts in a single interface.
+EXAMPLE: an HBox and a VBox, assigned to the top and bottom of a BorderPane, respectively, then added to the scene, then set to the stage.
 
 ==EVENT HANDLING
 
