@@ -456,6 +456,7 @@ Components are set within classes that automatically arrange them based on their
 EXAMPLE: an HBox and a VBox, assigned to the top and bottom of a BorderPane, respectively, then added to the scene, then set to the stage.
 
 ==EVENT HANDLING
+Event handlers are attached to components. They listen for user interaction, such as text being entered, or a button being pressed, and then they fire off code in response. In Java, this is an interface, and for specific events, you define the implementation.
 
 ==LAUNCH PARAMETERS
 
