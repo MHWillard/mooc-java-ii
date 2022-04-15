@@ -458,6 +458,24 @@ EXAMPLE: an HBox and a VBox, assigned to the top and bottom of a BorderPane, res
 ==EVENT HANDLING
 Event handlers are attached to components. They listen for user interaction, such as text being entered, or a button being pressed, and then they fire off code in response. In Java, this is an interface, and for specific events, you define the implementation.
 
+Different components require different event handler interfaces. ActionEvent listens for actions, ChangeListener listens for changes. Each has their own shorthand lambda form.
+
+In Java, this is something like:
+button.setOnAction(new EventHandler<ActionEvent>() {
+	@override
+	public void handle(ActionEvent event) {
+		System.out.println("Pressed!");
+	}
+});
+
+Lambda shorthand:
+button.setOnAction((event) -> {
+	System.out.println("Pressed!");	
+});
+
+(Compare this to Javascript's similar syntax for event handling.)
+
+
 ==LAUNCH PARAMETERS
 
 ==MULTIPLE VIEWS
