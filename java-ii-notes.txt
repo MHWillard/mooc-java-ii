@@ -477,6 +477,18 @@ button.setOnAction((event) -> {
 
 
 ==LAUNCH PARAMETERS
+Typically the main method runs something like launch(Application.class) to launch the program. You can pass arguments into this method to launch with runtime parameters.
+
+1. GetParameters for a new parameters object
+2. use getNamed() to set hash table with key/value pairs
+3. use this when launching
+
+Parameters params = getParameters();
+String firstName = params.getNamed().get("first");
+String lastName = params.getNamed().get("last");
+
+launch(Application.class, "--first=Bill", "last=Johnson");
+
 
 ==MULTIPLE VIEWS
 
