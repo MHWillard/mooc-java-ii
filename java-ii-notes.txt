@@ -491,6 +491,7 @@ launch(Application.class, "--first=Bill", "last=Johnson");
 
 
 ==MULTIPLE VIEWS
+Typically views are set as multiple Scene objects and events switch between them. You can use window.setScene to switch for an event.
 
 ### PART 14
 
