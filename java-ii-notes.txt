@@ -493,5 +493,9 @@ launch(Application.class, "--first=Bill", "last=Johnson");
 ==MULTIPLE VIEWS
 Typically views are set as multiple Scene objects and events switch between them. You can use window.setScene to switch for an event.
 
+Each view can have its own layout, or even a single layout where you swap pieces in based on events, like subviews, other buttons, etc.
+
+This is also a good time to reconsider MVC (Model/View/Controller). Since each object should be kept to one responsibility, decouple the application logic from the code that generates the user interface. Make sure to avoid repeating code where possible.
+
 ### PART 14
 

@@ -1,16 +1,31 @@
 package title;
 
 
-public class Main {
+import javafx.application.Application;
+import javafx.application.Application.Parameters;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 
-    //user interface
-    //get name title
-    //new Title object(name, title)
-    //get name, get title
-    //add to params
+public class Main extends Application {
+
+    
+    @Override
+    public void start(Stage stage) {        
+        Parameters params = getParameters();
+        String userTitle = params.getNamed().get("add_title");
+        
+        stage.setTitle(userTitle);
+        stage.show();
+    }
     
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+                CmdInterface cmd = new CmdInterface();
+        String input = cmd.printCmd();
+        
+        UserTitle title = new UserTitle(input);
+        String titleGet = title.getTitle();
+        
+        launch(Main.class, "--add_title="+titleGet);
 
     }
 
