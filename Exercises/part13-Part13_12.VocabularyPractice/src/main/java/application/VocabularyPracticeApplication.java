@@ -52,14 +52,15 @@ public class VocabularyPracticeApplication extends Application {
         InputView inputView = new InputView();
         PracticeView practiceView = new PracticeView();
         Dictionary dict = new Dictionary();
-        AppPane pane = new AppPane();
+        AppPane pane = new AppPane(viewButtons, inputView, practiceView);
        
         
-        /*
-        wordMode.setOnAction((event)->{
+        
+        inputView.inputView.wordMode.setOnAction((event)->{
             pane.setCenter(addView);
         });
         
+        /*
         practiceMode.setOnAction((event)->{
             pane.setCenter(practiceView);
         });
@@ -72,7 +73,7 @@ public class VocabularyPracticeApplication extends Application {
         
         //addView.wordInput and translateInput?
         
-        pane.setInitialPane(viewButtons, inputView);
+        pane.setInitialPane();
         
         Scene scene = new Scene(pane.pane);
         

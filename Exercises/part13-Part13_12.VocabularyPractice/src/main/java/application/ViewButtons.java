@@ -28,6 +28,18 @@ public class ViewButtons {
     }
     
     /*
+    wordMode.setOnAction((event)->{
+            pane.setCenter(addView);
+        });
+    
+    switchWordMode() {
+        
+    }
+    */
+    
+    
+    
+    /*
     public void setAddView(BorderPane pane) {
         pane.setCenter(addView);
     }
