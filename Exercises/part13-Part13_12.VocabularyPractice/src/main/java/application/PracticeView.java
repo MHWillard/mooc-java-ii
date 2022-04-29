@@ -15,15 +15,31 @@ import javafx.scene.layout.VBox;
  * @author mwillard
  */
 public class PracticeView {
-    public VBox practiceView;
+    private VBox practiceView;
+    private Dictionary dict;
     
-    public PracticeView() {
+    public PracticeView(Dictionary dict) {
+        this.dict = dict;
+        
         VBox vbox = new VBox();
         TextField answerInput = new TextField();
         Button checkAnswer = new Button("Check");
         vbox.getChildren().addAll(new Label("Translate the word [XXX]"),answerInput,checkAnswer);
         
+        //feed keys into arraylist
+        //or: get a random hashmap key
+        //tran compare values for translation
+        checkAnswer.setOnAction((event) -> {
+            String guess = answerInput.getText();
+            int size = this.dict.dictionary.size();
+        });
+        
+        
         practiceView = vbox;
+    }
+    
+    public VBox getView() {
+        return practiceView;
     }
     
     //create practice view

@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Dictionary {
     //needs a key/value pair word list: arraylist? Hash? Probably hasp
     //get word pair from hashmap
-    private HashMap<String, String> dictionary;
+    public HashMap<String, String> dictionary;
     
     public Dictionary() {
         dictionary = new HashMap<>();

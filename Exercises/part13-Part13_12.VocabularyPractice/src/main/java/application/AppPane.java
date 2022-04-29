@@ -5,7 +5,9 @@
  */
 package application;
 
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 
 /**
  *
@@ -15,7 +17,7 @@ public class AppPane {
     public BorderPane pane;
     InputView input;
     PracticeView practice;
-    ViewButtons buttons;
+    HBox buttons;
     //maybe port in the view guts to work with? Actually this makes a lot of sense.
     
     public AppPane(ViewButtons buttons, InputView input, PracticeView practice) {
@@ -23,19 +25,34 @@ public class AppPane {
         this.pane = pane;
         this.input = input;
         this.practice = practice;
-        this.buttons = buttons;
+        
+        HBox viewButtons = new HBox();
+        Button wordMode = new Button("Enter new words");
+        Button practiceMode = new Button("Practice");
+        
+        viewButtons.getChildren().addAll(wordMode, practiceMode);
+        
+        wordMode.setOnAction((event)->{
+            setInputView();
+        });
+        
+        practiceMode.setOnAction((event)->{
+            setPracticeView();
+        });
+        
+        this.buttons = viewButtons;
     }
     
     public void setInitialPane() {
-        pane.setTop(buttons.buttonBox);
-        pane.setCenter(input.inputView);
+        pane.setTop(buttons);
+        pane.setCenter(input.getView());
     }
     
     public void setInputView() {
-       pane.setCenter(input.inputView);
+       pane.setCenter(input.getView());
     }
     
     public void setPracticeView() {
-        pane.setCenter(practice.practiceView);
+        pane.setCenter(practice.getView());
     }
 }

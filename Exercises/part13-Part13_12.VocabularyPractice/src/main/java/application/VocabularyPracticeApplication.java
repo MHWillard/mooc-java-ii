@@ -48,17 +48,13 @@ public class VocabularyPracticeApplication extends Application {
     
     @Override
     public void start(Stage window) {
-        ViewButtons viewButtons = new ViewButtons();
-        InputView inputView = new InputView();
-        PracticeView practiceView = new PracticeView();
         Dictionary dict = new Dictionary();
+        
+        ViewButtons viewButtons = new ViewButtons();
+        InputView inputView = new InputView(dict);
+        PracticeView practiceView = new PracticeView(dict);
         AppPane pane = new AppPane(viewButtons, inputView, practiceView);
-       
-        
-        
-        inputView.inputView.wordMode.setOnAction((event)->{
-            pane.setCenter(addView);
-        });
+
         
         /*
         practiceMode.setOnAction((event)->{
