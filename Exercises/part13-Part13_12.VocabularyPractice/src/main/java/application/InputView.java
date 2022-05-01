@@ -35,6 +35,8 @@ public class InputView {
             String word = wordInput.getText();
             String translation = translateInput.getText();
             dict.addWordPair(word, translation);
+            System.out.println(word);
+            System.out.println(translation);
         });
         
         inputView = vbox;

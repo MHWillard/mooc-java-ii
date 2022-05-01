@@ -49,6 +49,7 @@ public class VocabularyPracticeApplication extends Application {
     @Override
     public void start(Stage window) {
         Dictionary dict = new Dictionary();
+        dict.addWordPair("fart", "fart2");
         
         ViewButtons viewButtons = new ViewButtons();
         InputView inputView = new InputView(dict);
