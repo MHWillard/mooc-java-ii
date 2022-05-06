@@ -1,0 +1,26 @@
+TIC TAC TOE GAME DESIGN
+
+=UI
+BorderPane
+--top: label about current turn/end of game message
+--center: 3x3 GridPane of buttons
+
+Button: starts blank but depending on who clicks it, it adds X or O
+
+ButtonGrid: build a button grid
+
+=LOGIC
+
+GameController Object
+-rotate turns
+--simple: starts as X's turn then rotates player
+--player is controlled by number or such
+
+-add symbol to buttons
+--when clicking a button, it should add text depending on the current player, where it then rotates its turn
+--if a button has text, it can't be clicked
+--if the game is over, buttons can't be clicked
+
+GameState Object
+-check for winning game state
+--each turn it needs to check, after a button is clicked, if three of the buttons match in a row
