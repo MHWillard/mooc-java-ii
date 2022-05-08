@@ -39,7 +39,7 @@ public class TicTacToeApplication extends Application {
                         this.turnLabel = this.turn.getTurn();
                         status.setText("Turn: " + this.turnLabel);
                     }
-                    //set text to current turn if button text is empty
+                    //set text to current turn if button text is emptyddsd
                 });
                 
                 grid.add(gridButton, i, j);
