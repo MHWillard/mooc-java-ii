@@ -499,3 +499,15 @@ This is also a good time to reconsider MVC (Model/View/Controller). Since each o
 
 ### PART 14
 
+==DATA VISUALIZATION
+Since we work best with visual information, data visualization is a way to present data trends in a clear format. Usually this is represented as bars, charts, etc. Java comes with pre-made classes and components that allow you to visually display data, even when it's dynamic. 
+
+https://docs.oracle.com/javafx/2/charts/jfxpub-charts.htm => good primer
+
+Line charts: displays data change over time. For Java, use NumberAxis to define the axes, then LineChart to draw it. Add to it a data set created from XYChart.Series. (Remember, you can use streams to read each line, get the data, and add to the data set in an iteration!)
+
+Bar charts: best for categorical data, like population in countries
+
+==MULTIMEDIA
+
+==MAVEN AND THIRD-PARTY LIBRARIES
