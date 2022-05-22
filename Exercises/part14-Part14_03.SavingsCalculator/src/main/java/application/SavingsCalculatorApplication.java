@@ -15,6 +15,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 public class SavingsCalculatorApplication extends Application {
     
@@ -43,16 +47,70 @@ public class SavingsCalculatorApplication extends Application {
     
     //savings Slider: minimum is 25, max is 250; defailt 25
     Slider savingsSlider = new Slider(25, 250, 25);
+    savingsSlider.setShowTickMarks(true);
+    savingsSlider.setShowTickLabels(true);
+    savingsSlider.setMajorTickUnit(25);
+    savingsSlider.setMinorTickCount(5);
+    savingsSlider.setSnapToTicks(true);
+   
+    
     Slider interestSlider = new Slider(0, 10, 0);
+    interestSlider.setShowTickMarks(true);
+    interestSlider.setShowTickLabels(true);
+    interestSlider.setMajorTickUnit(1);
+    //interestSlider.setMinorTickCount(3);
+    interestSlider.setSnapToTicks(true);
     //interest slider: 0-10
     
-    savingsSliderPane.setLeft(new Label("Monthly savings"));
+    Label savingsLabel = new Label("Monthly savings");
+    Label interestLabel = new Label("Yearly interest rate");
+    Label currentSavings = new Label(Double.toString(savingsSlider.getValue()));
+    Label currentInterest = new Label(Double.toString(interestSlider.getValue()));
+    
+    /*
+    WHEN SLIDER IS MANIPULATED:
+    
+    catch event
+    catch current value
+    change currentInterest label = value (held as object property)
+    */
+    
+        //add changelistener
+    //https://docs.oracle.com/javafx/2/ui_controls/slider.htm
+    savingsSlider.valueProperty().addListener(new ChangeListener<Number>() {
+        public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+            //currentSavings.setText(new_val.toString());
+            currentSavings.setText(String.format("%.2f",new_val));
+        }
+    });
+    
+    interestSlider.valueProperty().addListener(new ChangeListener<Number>() {
+        public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+            currentInterest.setText(String.format("%.2f",new_val));
+        }
+    });
+    
+    savingsSliderPane.setLeft(savingsLabel);
     savingsSliderPane.setCenter(savingsSlider);
-    //savingsSliderPane.setRight();
+    savingsSliderPane.setRight(currentSavings);
+    
+    interestSliderPane.setLeft(interestLabel);
+    interestSliderPane.setCenter(interestSlider);
+    interestSliderPane.setRight(currentInterest);
+    
+    sliderBox.getChildren().addAll(savingsSliderPane, interestSliderPane);
+    
+    mainPane.setTop(sliderBox);
+    mainPane.setCenter(chart);
+    
+    Scene scene = new Scene(mainPane);
+    stage.setScene(scene);
+    stage.show();
         
     }
 
     public static void main(String[] args) {
+        launch(SavingsCalculatorApplication.class);
         System.out.println("Hello world!");
     }
 
