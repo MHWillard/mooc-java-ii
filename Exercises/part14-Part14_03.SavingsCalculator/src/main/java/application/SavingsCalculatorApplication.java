@@ -21,8 +21,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
 public class SavingsCalculatorApplication extends Application {
-    
-
+    Data data;
     
     @Override
     public void start(Stage stage) {
@@ -41,15 +40,18 @@ public class SavingsCalculatorApplication extends Application {
     BorderPane interestSliderPane = new BorderPane();
     VBox sliderBox = new VBox();
     
-    NumberAxis xAxis = new NumberAxis();
+    NumberAxis xAxis = new NumberAxis(1, 30, 1);
     NumberAxis yAxis = new NumberAxis();
     LineChart<Number, Number> chart = new LineChart<>(xAxis, yAxis);
+    
+    //set up data object
+    this.data = new Data();
     
     //savings Slider: minimum is 25, max is 250; defailt 25
     Slider savingsSlider = new Slider(25, 250, 25);
     savingsSlider.setShowTickMarks(true);
     savingsSlider.setShowTickLabels(true);
-    savingsSlider.setMajorTickUnit(25);
+    savingsSlider.setMajorTickUnit(1);
     savingsSlider.setMinorTickCount(5);
     savingsSlider.setSnapToTicks(true);
    
@@ -80,13 +82,23 @@ public class SavingsCalculatorApplication extends Application {
     savingsSlider.valueProperty().addListener(new ChangeListener<Number>() {
         public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
             //currentSavings.setText(new_val.toString());
-            currentSavings.setText(String.format("%.2f",new_val));
+            //Number roundedValue = Math.round(new_val);
+            
+            int savings = new_val.intValue();
+            double interest = interestSlider.getValue();
+            currentSavings.setText(Integer.toString(savings));
+            
+            data.updateSavings(savings, interest, savingsSlider.getValue());        
         }
     });
     
     interestSlider.valueProperty().addListener(new ChangeListener<Number>() {
         public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-            currentInterest.setText(String.format("%.2f",new_val));
+            
+            double interest = new_val.doubleValue();
+            currentInterest.setText(String.format("%.2f",interest));
+            
+            data.updateInterest(interest, savingsSlider.getValue());  
         }
     });
     
@@ -102,6 +114,8 @@ public class SavingsCalculatorApplication extends Application {
     
     mainPane.setTop(sliderBox);
     mainPane.setCenter(chart);
+    
+    chart.getData().addAll(data.savingSeries, data.interestSeries);
     
     Scene scene = new Scene(mainPane);
     stage.setScene(scene);
